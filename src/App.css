@@ -38,3 +38,25 @@ h1 {
 .figure-part {
   display: none; /* hide figure parts by default */
 }
+
+
+.word {
+  /* center at the bottom */
+  display: flex;
+  position: absolute;
+  bottom: 10px;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.letter {
+  /* define the style for each letter box (visible or not) */
+  border-bottom: 3px solid #2980b9;
+  display: inline-flex;
+  font-size: 30px;
+  align-items: center;
+  justify-content: center;
+  margin: 0 3px;
+  height: 50px;
+  width: 20px;
+}
