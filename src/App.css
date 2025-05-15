@@ -60,3 +60,21 @@ h1 {
   height: 50px;
   width: 20px;
 }
+
+.wrong-letters-container {
+  /* position in the top-right of the game area */
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  display: flex;
+  flex-direction: column;
+  text-align: right;
+}
+
+.wrong-letters-container p {
+  margin: 0 0 5px;
+}
+
+.wrong-letters-container span {
+  font-size: 24px;
+}
