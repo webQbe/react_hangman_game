@@ -67,8 +67,11 @@ function App() {
    <> {/* Wrap in React fragment */}
       <Header />
       <div className="game-container">
-        
-        <Figure />
+
+        <Figure 
+           // Pass wrongLetters as a prop
+          wrongLetters={wrongLetters} 
+        />
 
         <WrongLetters 
           // Pass wrongLetters as a prop

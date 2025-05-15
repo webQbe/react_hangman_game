@@ -1,6 +1,10 @@
 import React from 'react'
 
-const Figure = () => {
+const Figure = ({ wrongLetters }) => {
+
+    // Determine how many mistakes player has made
+    const errors = wrongLetters.length
+
   return (
             /* Render Hangman figure using SVG */
             <svg height="250" width="200" class="figure-container">
@@ -13,19 +17,23 @@ const Figure = () => {
 
                 {/* Only the Rod (the top frame and base) are always visible */}
 
-                {/*  Head  */}
-                <circle cx="140" cy="70" r="20" class="figure-part" />
+                {/*  Head (Show if Mistake Count is 1 ) */}
+                { errors > 0 && <circle cx="140" cy="70" r="20" /> }
 
-                {/* Body */}
-                <line x1="140" y1="90" x2="140" y2="150" class="figure-part" />
+                {/* Body (Show if Mistake Count is 2 ) */}
+                { errors > 1 && <line x1="140" y1="90" x2="140" y2="150" /> }
 
-                {/* Arms */}
-                <line x1="140" y1="120" x2="120" y2="100" class="figure-part" />
-                <line x1="140" y1="120" x2="160" y2="100" class="figure-part" />
+                { /* Arms */}
+                  {/* Left Arm (Show if Mistake Count is 3)  */}
+                  { errors > 2 && <line x1="140" y1="120" x2="120" y2="100" /> }
+                  {/* Right Arm (Show if Mistake Count is 4) */}
+                  { errors > 3 && <line x1="140" y1="120" x2="160" y2="100" /> }
 
                 {/* Legs */}
-                <line x1="140" y1="150" x2="120" y2="180" class="figure-part" />
-                <line x1="140" y1="150" x2="160" y2="180" class="figure-part" />
+                  {/* Left Leg (Show if Mistake Count is 5) */}
+                  { errors > 4 && <line x1="140" y1="150" x2="120" y2="180" /> }
+                  {/* Right Leg (Show if Mistake Count is 6) */}
+                  { errors > 5 && <line x1="140" y1="150" x2="160" y2="180" /> }
 
                 {/* 'figure-part' class is applied to body parts (head, body, arms, legs), these are hidden by default (display: none; in CSS) */}
               
