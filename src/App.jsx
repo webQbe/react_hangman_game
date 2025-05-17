@@ -4,6 +4,8 @@ import Header from './components/Header'
 import Figure from './components/Figure'
 import WrongLetters from './components/WrongLetters'
 import Word from './components/Word'
+import Notification from './components/Notification'
+import { showNotification as show } from './helpers/helpers'
 import './App.css'
 
 const words = ['application', 'programming', 'interface', 'wizard']
@@ -18,6 +20,8 @@ function App() {
   const [correctLetters, setCorrectLetters] = useState([])
   // Track letters guessed incorrectly
   const [wrongLetters, setWrongLetters] = useState([])
+  // Track whether notification is displayed
+  const [showNotification, setShowNotification] = useState(false)
 
   useEffect(() => { // Run everytime the states change
 
@@ -38,7 +42,13 @@ function App() {
               setCorrectLetters(currentLetters => [...currentLetters, letter])
 
             } else {
-              /* Show notification: already guessed */
+
+              /* Show notification: already entered */
+              show(setShowNotification) 
+
+              /* Call helper function showNotification() (aliased as show) and passing in the setShowNotification() setter function. 
+              This toggles the state to briefly show the notification, and then hide it again after 2 seconds.
+              */
             }
           } else {
 
@@ -48,7 +58,8 @@ function App() {
                 setWrongLetters(wrongLetters => [...wrongLetters, letter])
 
              } else {
-                /* Show notification: already guessed */
+                /* Show notification: already entered */
+                show(setShowNotification)  
              }
           }
         }
@@ -83,8 +94,9 @@ function App() {
           selectedWord={selectedWord} 
           correctLetters={correctLetters} 
         />
-
       </div>
+      
+      <Notification showNotification={showNotification} />
    </>
   )
 }
