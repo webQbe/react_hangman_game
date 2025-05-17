@@ -10,8 +10,6 @@ import { showNotification as show } from './helpers/helpers'
 import './App.css'
 
 const words = ['application', 'programming', 'interface', 'wizard']
-// Pick a random word from the list 
-let selectedWord = words[Math.floor(Math.random() * words.length)]
 
 function App() {
 
@@ -23,6 +21,8 @@ function App() {
   const [wrongLetters, setWrongLetters] = useState([])
   // Track whether notification is displayed
   const [showNotification, setShowNotification] = useState(false)
+  // Select & Store word by default
+  const [selectedWord, setSelectedWord] = useState(words[Math.floor(Math.random() * words.length)])
 
   useEffect(() => { // Run everytime the states change
 
@@ -74,6 +74,16 @@ function App() {
 
   }, [correctLetters, wrongLetters, playable]) 
 
+  const playAgain = () => {
+
+    setPlayable(true)     // Allow the game to accept new input
+    setCorrectLetters([]) // Clear correct guesses
+    setWrongLetters([])   // Clear wrong guesses
+
+    // Pick a new word & update state
+    setSelectedWord(words[Math.floor(Math.random() * words.length)])
+  }
+
   // Render child components
   return (
    <> {/* Wrap in React fragment */}
@@ -102,8 +112,9 @@ function App() {
         wrongLetters={wrongLetters}
         selectedWord={selectedWord}
         setPlayable={setPlayable}
+        playAgain={playAgain}
       />
-      
+
       <Notification showNotification={showNotification} />
    </>
   )
